@@ -165,9 +165,10 @@ with left_col:
         "gpt-5.2", "gpt-5.1", "claude-sonnet-4-5", "qwen3-coder", "qwen3-tput", "gpt-oss"], label_visibility="collapsed")
     
     # 2. 시대 배경 입력 칸
-    era_input = st.text_input("시대 배경 입력", placeholder="예: 조선시대, 현대, 고려시대 등", help="현재 온톨로지는 조선시대 데이터에 최적화되어 있습니다.")
+    era_input = st.text_input("분석 대상 시대 및 지역 입력", 
+        placeholder="예: 조선, 한양 / 현대, 서울 / 고려, 개경", 
+        help="검증하고자 하는 작품의 핵심 배경 키워드를 입력해주세요.")
 
-    # --- [위치 변경] 가드레일 경고 메시지를 입력창 바로 아래로 올림 ---
     if not st.session_state.analyzed and era_input != "":
         if "조선" not in era_input:
             st.error(f"⚠️ 가드레일 작동: '{era_input}' 배경은 현재 온톨로지 검증 범위를 벗어납니다.")
