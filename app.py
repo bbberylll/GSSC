@@ -21,7 +21,7 @@ if ctx and f"{ctx.session_id}.visited" not in st.session_state:
     if os.path.exists(COUNTER_FILE):
         with open(COUNTER_FILE, "r+") as f:
             content = f.read().strip()
-            count = int(content) if content else 49
+            count = int(content) if content else 78
             f.seek(0)
             f.write(str(count + 1))
             f.truncate()
@@ -144,12 +144,12 @@ with m1:
 with m2:
     st.markdown(f'''<div class="metric-container">
         <span class="material-symbols-outlined" style="color:{MAIN_COLOR}">shield_with_heart</span>
-        <span class="metric-label">가드레일 작동</span><span class="metric-val">1,842건</span>
+        <span class="metric-label">가드레일 작동</span><span class="metric-val">41건</span>
     </div>''', unsafe_allow_html=True)
 with m3:
     st.markdown(f'''<div class="metric-container">
         <span class="material-symbols-outlined" style="color:{MAIN_COLOR}">verified</span>
-        <span class="metric-label">데이터 신뢰도</span><span class="metric-val">99.8%</span>
+        <span class="metric-label">데이터 신뢰도</span><span class="metric-val">91.8%</span>
     </div>''', unsafe_allow_html=True)
 
 st.write("")
