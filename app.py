@@ -14,7 +14,7 @@ POINT_COLOR = "#007bff" # 최종 결론 파란색
 # --- 누적 접속자 로직 ---
 COUNTER_FILE = "total_counter.txt"
 if not os.path.exists(COUNTER_FILE):
-    with open(COUNTER_FILE, "w") as f: f.write("49")
+    with open(COUNTER_FILE, "w") as f: f.write("78")
 
 ctx = get_script_run_ctx()
 if ctx and f"{ctx.session_id}.visited" not in st.session_state:
