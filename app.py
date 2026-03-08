@@ -172,22 +172,23 @@ with left_col:
         placeholder="예: 조선, 한양 / 현대, 서울 / 고려, 개경", 
         help="검증하고자 하는 작품의 핵심 배경 키워드를 입력해주세요.")
 
+    # --- 가드레일 작동 알림 영역 ---
     if not st.session_state.analyzed and era_input != "":
-        if "조선" not in era_input:
+        # '조선'도 없고 '일제'도 없을 때만 가드레일 작동
+        if "조선" not in era_input and "일제" not in era_input:
             st.error(f"⚠️ 가드레일 작동: '{era_input}' 배경은 현재 온톨로지 검증 범위를 벗어납니다.")
-            st.info("💡 CultureFIT은 현재 '조선시대' 역사 데이터에 특화되어 있습니다. 해당 시나리오는 아직 가드레일이 작동할 수 없습니다.")
+            st.info("💡 CultureFIT은 현재 **'조선시대'** 및 **'일제강점기'** 역사 데이터에 특화되어 있습니다. 해당 시나리오는 아직 가드레일이 작동할 수 없습니다.")
 
     if not st.session_state.analyzed:
-        # 분석 전: 대본 입력창
         st.session_state.script_content = st.text_area("Script Input", value=st.session_state.script_content, height=550, label_visibility="collapsed")
-        
+
         if st.button("🔎 고증 정합성 검사 시작"):
-            if "조선" in era_input:
+            # 버튼 클릭 시에도 동일하게 체크
+            if "조선" in era_input or "일제" in era_input:
                 st.session_state.analyzed = True
                 st.rerun()
             elif era_input == "":
                 st.warning("작품의 시대 배경을 입력해주세요.")
-            # '조선'이 아닐 때는 위에서 이미 메시지를 띄웠으므로 실행되지 않음
     
     else:
         # 분석 후: 결과 표시
