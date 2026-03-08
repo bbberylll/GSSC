@@ -131,8 +131,11 @@ with st.sidebar:
 if "analyzed" not in st.session_state: st.session_state.analyzed = False
 if "is_fixed" not in st.session_state: st.session_state.is_fixed = False
 if "script_content" not in st.session_state:
-    st.session_state.script_content = """S# 12. 기방 내실 (밤)\n\n충녕, 서양 사제 앞에 앉아 있다. \n서양 사제의 앞에는 기름진 월병과 피단이 놓인 상이 차려져 있다.\n\n충녕: (잔을 채우며) 먼 길 오느라 고생하셨소. \n서양 사제: (서툰 조선말로) 건국 대왕께서 악령의 도움을 받으셨다는 이야기는 익히 들었습니다.\n충녕: (무겁게 끄덕이며) 그것이 우리 가문의 지워지지 않는 비화지요.\n\n이때, 문이 열리며 무화가 들어온다. \n그녀는 화려한 중국풍 의상을 입고 묘한 미소를 지으며 춤을 추기 시작한다."""
+    ##st.session_state.script_content = """S# 12. 기방 내실 (밤)\n\n충녕, 서양 사제 앞에 앉아 있다. \n서양 사제의 앞에는 기름진 월병과 피단이 놓인 상이 차려져 있다.\n\n충녕: (잔을 채우며) 먼 길 오느라 고생하셨소. \n서양 사제: (서툰 조선말로) 건국 대왕께서 악령의 도움을 받으셨다는 이야기는 익히 들었습니다.\n충녕: (무겁게 끄덕이며) 그것이 우리 가문의 지워지지 않는 비화지요.\n\n이때, 문이 열리며 무화가 들어온다. \n그녀는 화려한 중국풍 의상을 입고 묘한 미소를 지으며 춤을 추기 시작한다."""
+    st.session_state.script_content = """1932년 4월 29일, 상하이 훙커우 공원. 일본군의 천장절 기념식이 한창이었다. 군복 차림의 사내들이 단상을 가득 메운 가운데, 한 조선 청년이 군중 속에 조용히 섞여 들었다.\n\n청년의 이름은 윤봉길. 그의 손에는 도시락 모양의 폭탄이 들려 있었다. 숨을 고른 그는 단상을 향해 힘껏 던졌다. 폭발과 함께 단상이 무너지고, 일본군 장성들이 쓰러졌다. 거사는 성공이었다. 그는 그 자리에서 체포됐지만, 얼굴에는 두려움 대신 결연함이 남아 있었다."""
 
+
+    
 # --- 4. 메인 대시보드 지표 (이모티콘 -> 아이콘 교체) ---
 total_users = get_total_users()
 m1, m2, m3 = st.columns(3)
@@ -187,14 +190,16 @@ with left_col:
             # '조선'이 아닐 때는 위에서 이미 메시지를 띄웠으므로 실행되지 않음
     
     else:
-        # 분석 후: 결과 표시 (이전과 동일)
+        # 분석 후: 결과 표시
         text = st.session_state.script_content
         if st.session_state.is_fixed:
-            for kw in ["다식과 송기떡", "명나라 관리", "백성들의 염원", "전통 한복"]:
+            # 두 시나리오의 교정 키워드 모두 포함
+            for kw in ["다식과 송기떡", "명나라 관리", "백성들의 염원", "전통 한복", "물통형 모양 폭탄"]:
                 text = text.replace(kw, f'<span class="highlight-blue">{kw}</span>')
             st.info("신뢰할 수 있는 사료를 바탕으로 교정이 완료되었습니다.")
         else:
-            for kw in ["월병", "서양 사제", "악령의 도움", "중국풍 의상"]:
+            # 두 시나리오의 위반 키워드 모두 포함
+            for kw in ["월병", "서양 사제", "악령의 도움", "중국풍 의상", "도시락 모양의 폭탄"]:
                 text = text.replace(kw, f'<span class="highlight-red">{kw}</span>')
             st.error("주의: 역사적 사실과 불일치하는 설정이 감지되었습니다.")
 
@@ -211,16 +216,20 @@ with right_col:
     else:
         if not st.session_state.is_fixed:
             if st.button("✨ 일괄 고증 교정 적용"):
-                st.session_state.script_content = st.session_state.script_content.replace("월병", "다식과 송기떡").replace("서양 사제", "명나라 관리").replace("악령의 도움", "백성들의 염원").replace("중국풍 의상", "전통 한복")
+                # 모든 시나리오의 교정 로직 통합
+                st.session_state.script_content = st.session_state.script_content.replace("월병", "다식과 송기떡").replace("서양 사제", "명나라 관리").replace("악령의 도움", "백성들의 염원").replace("중국풍 의상", "전통 한복").replace("도시락 모양의 폭탄", "물통형 모양 폭탄")
                 st.session_state.is_fixed = True
                 st.rerun()
 
-            issues = [
-                {"target": "서양 사제", "reason": "조선 15세기 가톨릭 사제 입국 기록 부재. 시대적 시차 300년 발생.", "type": "인물"},
-                {"target": "월병", "reason": "중국식 병과로 조선 왕실 연회 기록(의궤)에 등장하지 않음.", "type": "소품"},
-                {"target": "악령의 도움", "reason": "건국 서사 왜곡. 실록의 민본주의 사상과 정면 배치됨.", "type": "서사"},
-                {"target": "중국풍 의상", "reason": "당시 무녀 복식은 전통 한복 양식을 따름. 타국 양식 혼용 확인.", "type": "의상"}
-            ]
+            # --- 대본 내용에 따라 리스트 생성 ---
+            issues = []
+            if "도시락" in st.session_state.script_content:
+                issues.append({"target": "도시락 모양의 폭탄", "reason": "1932년 5월 25일자 상하이 군법회의 판결문에 따르면 실제 투척물은 물통 폭탄임.", "type": "소품"})
+            if "월병" in st.session_state.script_content:
+                issues.append({"target": "서양 사제", "reason": "15세기 조선에 가톨릭 사제 입국 기록 부재.", "type": "인물"})
+                issues.append({"target": "월병", "reason": "중국식 병과로 조선 왕실 의궤에 등장하지 않음.", "type": "소품"})
+                # ... 필요한 만큼 추가 가능
+
             for idx, iss in enumerate(issues):
                 with st.expander(f"⚠️ {iss['type']}: [{iss['target']}]"):
                     st.write(f"**분석:** {iss['reason']}")
@@ -242,6 +251,18 @@ with right_col:
     ''', unsafe_allow_html=True)
 
             issue_data = {
+                "도시락 모양의 폭탄": {
+                    "nodes": [
+                        Node(id="Fact", label="실제 투척: 물통 폭탄", size=25, color=POINT_COLOR),
+                        Node(id="Evidence", label="상하이 군법회의 판결문(1932)", size=20, color="#4CAF50"),
+                        Node(id="Reserve", label="도시락 폭탄: 자결용", size=20, color="#ff4b4b"),
+                        Node(id="Source", label="매헌윤봉길의사기념관", size=15, color="#9467bd")
+                    ],
+                    "edges": [
+                        Edge(source="Fact", target="Evidence", label="기록 증명"),
+                        Edge(source="Fact", target="Reserve", label="용도 구분")
+                    ]
+                },
                 "서양 사제": {
                     "nodes": [
                         Node(id="Era", label="조선 15세기", size=25, color=MAIN_COLOR),
