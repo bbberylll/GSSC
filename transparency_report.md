@@ -12,7 +12,7 @@
 <table>
   <thead>
     <tr>
-      <th width="200px">연구 단계</th>
+      <th width="150px">연구 단계</th>
       <th width="150px">사용 도구</th>
       <th>구체적 활용 내용 및 범위</th>
       <th>검증 및 비고</th>
@@ -28,7 +28,8 @@
     <tr>
       <td><b>데이터 구성 (예정)</b></td>
       <td>ChatGPT-3.5</td>
-      <td>비용 효율적인 대량 데이터 생성을 위해 RAG-aware preference 데이터(chosen/rejected 쌍) 자동 생성에 활용</td>
+      <td>비용 효율적인 대량 데이터 생성을 위해 ChatGPT-3.5 활용. 
+        RAG-aware preference 데이터(chosen/rejected 쌍) 자동 생성에 활용</td>
       <td>생성된 데이터는 연구자가 직접 샘플링하여 품질 및 정합성 검토 병행</td>
     </tr>
     <tr>
