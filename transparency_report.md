@@ -13,7 +13,7 @@
   <thead>
     <tr>
       <th width="170px">연구 단계</th>
-      <th width="150px">사용 도구</th>
+      <th width="170px">사용 도구</th>
       <th>구체적 활용 내용 및 범위</th>
       <th>검증 및 비고</th>
     </tr>
