@@ -23,13 +23,13 @@
       <td><b>선행 연구 분석</b></td>
       <td>Claude 3.5 Sonnet<br>NotebookLM</td>
       <td>• PA-RAG, DPA-RAG, ClashEval 등 관련 논문 분석<br>• 핵심 방법론(DPO, LoRA, RAFT 등) 정리<br>• 벤치마크 구조 정리 및 질의</td>
-      <td>NotebookLM 폐쇄형 설정으로<br>외부 데이터 혼입 방지</td>
+      <td>NotebookLM 폐쇄형 설정으로<br>외부 데이터 혼입 방지 및 원문 근거 확인</td>
     </tr>
     <tr>
       <td><b>데이터 구성 (예정)</b></td>
       <td>ChatGPT-3.5</td>
       <td>• RAG-aware preference 데이터 자동 생성<br>• chosen/rejected 쌍 생성으로 비용 효율성 확보</td>
-      <td>인간 연구자의 샘플링 검수 필수</td>
+      <td>데이터 샘플링 통한 품질 및 정합성 검수 필수</td>
     </tr>
     <tr>
       <td><b>실험 설계 및 평가</b></td>
