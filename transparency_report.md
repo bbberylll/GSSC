@@ -25,13 +25,13 @@
       <td>데이터 샘플링 통한 품질, 정합성 검수 필수</td>
     </tr>
     <tr>
-      <td><b>실험 설계 및 평가</b></td>
+      <td><b>실험 설계 및 평가 (예정)</b></td>
       <td>GPT-4o<br>Gemini 1.5 Pro</td>
       <td>• Baseline vs Hybrid 대조군 설정 자문<br>• Faithfulness Score 등 주관적 지표 평가<br>• LLM-as-a-judge 방식 도입</td>
       <td>RAGAS 지표와 병행 교차 검증<br>(RTX 3090 × 4 환경 고려)</td>
     </tr>
     <tr>
-      <td><b>코드 구현 및 최적화</b></td>
+      <td><b>코드 구현 및 최적화 (예정)</b></td>
       <td>Cursor<br>Claude (Code)</td>
       <td>• PyTorch 기반 학습 루프 구현 보조<br>• DeepSpeed 커스텀 설정 및 오류 디버깅</td>
       <td>단위 테스트 수행 및<br>핵심 로직 수식 대조 검증</td>
