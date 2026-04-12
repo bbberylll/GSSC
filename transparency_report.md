@@ -2,19 +2,13 @@
 
 ## 1. 단계별 AI 활용 현황
 
-| 연구 단계                  | 사용 도구 | 구체적 활용 내용 및 범위 | 검증 및 비고 |
+| 연구 단계 &nbsp;&nbsp;&nbsp;| 사용 도구 | 구체적 활용 내용 및 범위 | 검증 및 비고 |
 | :--- | :--- | :--- | :--- |
 | **선행 연구 분석**               | **Claude 3.5 Sonnet** / **NotebookLM** | PA-RAG, DPA-RAG, ClashEval 등 RAG-alignment 관련 논문 10여 편 분석. 핵심 방법론(DPO, LoRA, RAFT 등) 및 벤치마크 구조 정리 질의 | NotebookLM은 폐쇄형으로 설정하여 외부 데이터 혼입 방지 및 원문 근거 확인 |
 | **데이터 구성 <br>(예정)**           | **ChatGPT-3.5** | 비용 효율적인 대량 데이터 생성을 위해 RAG-aware preference 데이터(chosen/rejected 쌍) 자동 생성에 활용 | 생성된 데이터는 연구자가 직접 샘플링하여 품질 및 정합성 검토 병행 |
 | **실험 설계 및 평가 <br>(예정)**     | **GPT-4o** / **Gemini 1.5 Pro** | 실험 파이프라인(Baseline vs Hybrid) 대조군 설정 자문. Faithfulness Score 등 주관적 지표에 대해 LLM-as-a-judge 방식으로 활용| RAGAS 등 규칙 기반 지표와 병행하여 교차 검증하며, **RTX 3090 × 4** 하드웨어 환경을 고려함|
 | **코드 구현 및 최적화 <br>(예정)**   | **Cursor** / **Claude (Code)** | **PyTorch** 기반 학습 루프 구현 보조 및 **DeepSpeed** 커스텀 설정 오류 디버깅 | AI 생성 코드는 반드시 단위 테스트를 거치며, 핵심 로직은 수식과 대조하여 전수 검증 |
 
-| 연구 단계 | 사용 도구 | 구체적 활용 내용 및 범위 | 검증 및 비고 |
-| :--- | :--- | :--- | :--- |
-| **선행 연구 분석** | **Claude 3.5 Sonnet** / **NotebookLM** | PA-RAG, DPA-RAG, ClashEval 등 RAG-alignment 관련 논문 10여 편 분석. 핵심 방법론(DPO, LoRA, RAFT 등) 및 벤치마크 구조 정리 질의 | NotebookLM은 폐쇄형으로 설정하여 외부 데이터 혼입 방지 및 원문 근거 확인 |
-| **데이터 구성 (예정)** | **ChatGPT-3.5** | 비용 효율적인 대량 데이터 생성을 위해 RAG-aware preference 데이터(chosen/rejected 쌍) 자동 생성에 활용 | 생성된 데이터는 연구자가 직접 샘플링하여 품질 및 정합성 검토 병행 |
-| **실험 설계 및 평가** | **GPT-4o** / **Gemini 1.5 Pro** | 실험 파이프라인(Baseline vs Hybrid) 대조군 설정 자문. Faithfulness Score 등 주관적 지표에 대해 LLM-as-a-judge 방식으로 활용 | [cite_start]RAGAS 등 규칙 기반 지표와 병행하여 교차 검증하며, **RTX 3090 × 4** 하드웨어 환경을 고려함 [cite: 14] |
-| **코드 구현 및 최적화** | **Cursor** / **Claude (Code)** | [cite_start]**PyTorch** 기반 학습 루프 구현 보조 및 **DeepSpeed** 커스텀 설정 오류 디버깅 [cite: 13, 14] | [cite_start]AI 생성 코드는 반드시 단위 테스트를 거치며, 핵심 로직은 수식과 대조하여 전수 검증 [cite: 13] |
 
 ## 2. 인간 주도 핵심 연구 영역
 
